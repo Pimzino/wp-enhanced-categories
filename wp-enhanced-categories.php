@@ -3,7 +3,7 @@
  * Plugin Name: WP Enhanced Categories
  * Plugin URI: https://github.com/Pimzino/wp-enhanced-categories
  * Description: A modern and user-friendly way to manage WordPress categories with an enhanced UI/UX.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Requires at least: 5.0
  * Requires PHP: 7.2
  * Author: Pimzino
@@ -63,8 +63,8 @@ class WP_Enhanced_Categories {
 	}
 
 	public function enqueue_assets($hook) {
-		// Update the hook check for submenu page
-		if ('posts_page_wp-enhanced-categories' !== $hook) {
+		// Check for our plugin's page
+		if (!strpos($hook, 'wp-enhanced-categories')) {
 			return;
 		}
 
@@ -145,6 +145,18 @@ class WP_Enhanced_Categories {
 			wp_send_json_error('Invalid category ID');
 		}
 
+		// Get all subcategories
+		$subcategories = get_categories(array(
+			'child_of' => $category_id,
+			'hide_empty' => false
+		));
+
+		// Delete all subcategories first
+		foreach ($subcategories as $subcategory) {
+			wp_delete_term($subcategory->term_id, 'category');
+		}
+
+		// Delete the main category
 		$result = wp_delete_term($category_id, 'category');
 
 		if (is_wp_error($result)) {

@@ -4,9 +4,11 @@ A modern and user-friendly way to manage WordPress categories with an enhanced U
 
 ## Features
 
-- Modern, intuitive folder-like interface
-- Visual category hierarchy with expand/collapse functionality
-- Easy drag-and-drop parent category selection
+- Modern, intuitive folder-like interface with breadcrumb navigation
+- Visual category hierarchy with back button navigation
+- Custom confirmation dialogs for category deletion
+- Recursive subcategory deletion handling
+- Easy parent category selection through visual modal
 - Inline category editing and deletion
 - Visual indicators for categories with subcategories
 - Clean, responsive design that integrates with WordPress admin
@@ -24,19 +26,21 @@ A modern and user-friendly way to manage WordPress categories with an enhanced U
 ### Managing Categories
 - Create new categories with name, description, and optional slug
 - Edit existing categories with a simple click
-- Delete categories with confirmation
+- Delete categories with smart confirmation dialogs
 - Easily set or change parent categories through the visual selector
+- Navigate through category hierarchy using breadcrumbs and back button
 
 ### Parent Category Selection
 - Browse categories in a folder-like modal
 - Visual indicators show which categories have subcategories
-- Expand/collapse functionality for easy navigation
+- Back button navigation for easy browsing
 - Select parent categories with a single click
 
-### Bulk Actions
-- Expand all categories to view full hierarchy
-- Collapse all categories for a cleaner view
+### Form Features
 - Clear form fields with dedicated clear buttons
+- Cancel button when editing categories
+- Auto-generated slugs from category names
+- Smart validation and error handling
 
 ## Requirements
 
