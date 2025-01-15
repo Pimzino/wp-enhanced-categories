@@ -1,3 +1,15 @@
+/* Hide WordPress footer elements */
+.wp-enhanced-categories #wpfooter,
+.wp-enhanced-categories .update-nag,
+.wp-enhanced-categories #footer-upgrade {
+	display: none !important;
+}
+
+body.toplevel_page_wp-enhanced-categories #wpfooter,
+body.posts_page_wp-enhanced-categories #wpfooter {
+	display: none !important;
+}
+
 /* Hide WordPress footer */
 body.wp-admin.toplevel_page_wp-enhanced-categories #wpfooter {
 	display: none !important;
@@ -40,6 +52,11 @@ body.wp-admin.toplevel_page_wp-enhanced-categories #wpfooter {
 	flex-direction: column;
 	overflow: hidden;
 	height: 100%;
+	position: relative;
+}
+
+.category-form {
+	margin-bottom: 4rem;
 }
 
 
@@ -478,10 +495,11 @@ body.wp-admin.toplevel_page_wp-enhanced-categories #wpfooter {
 
 /* Form fields container adjustments */
 .form-fields-container {
-    flex: 1 1 auto;
-    overflow-y: auto;
-    padding-right: 10px;
-    margin-bottom: 0;
+	flex: 1 1 auto;
+	overflow-y: auto;
+	padding-right: 10px;
+	padding-bottom: 4rem;
+	margin-bottom: 0;
 }
 
 /* Parent Category Selector spacing */
@@ -901,13 +919,19 @@ body.modal-open {
 	border-color: #b32d2e;
 }
 
-/* Social buttons styles */
-.form-footer {
-	margin-top: 1rem;
-	padding-top: 1rem;
+/* Form footer styles */
+.wp-enhanced-categories__form-section .form-footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 1rem 1.5rem;
 	border-top: 1px solid #dcdcde;
 	display: flex;
 	gap: 0.5rem;
+	background: #f8f9fa;
+	border-radius: 0 0 8px 8px;
+	justify-content: flex-end;
 }
 
 .social-button {

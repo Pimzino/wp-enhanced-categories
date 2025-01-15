@@ -3,7 +3,7 @@
  * Plugin Name: WP Enhanced Categories
  * Plugin URI: https://github.com/Pimzino/wp-enhanced-categories
  * Description: A modern and user-friendly way to manage WordPress categories with an enhanced UI/UX.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Requires at least: 5.0
  * Requires PHP: 7.2
  * Author: Pimzino
@@ -40,11 +40,11 @@ class WP_Enhanced_Categories {
 
 	public function remove_admin_footer() {
 		$screen = get_current_screen();
-		if ($screen && $screen->id === 'toplevel_page_wp-enhanced-categories') {
+		if ($screen && strpos($screen->id, 'wp-enhanced-categories') !== false) {
 			remove_all_filters('admin_footer_text');
 			remove_all_filters('update_footer');
-			add_filter('admin_footer_text', '__return_empty_string');
-			add_filter('update_footer', '__return_empty_string');
+			add_filter('admin_footer_text', '__return_empty_string', 99);
+			add_filter('update_footer', '__return_empty_string', 99);
 			add_action('admin_head', function() {
 				echo '<style>#wpfooter { display: none !important; }</style>';
 			});
