@@ -1,9 +1,18 @@
-// Enhanced Categories Plugin - Modern Folder-like Interface
+// WP Enhanced Categories Plugin - Modern Folder-like Interface
 jQuery(document).ready(function($) {
 	const modal = $('#parent-category-modal');
 	const categoriesTree = $('#categories-tree');
 	const parentCategoriesTree = $('#parent-categories-tree');
 	let categories = [];
+
+	function initClearFields() {
+		$('.clear-field').on('click', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			const $input = $(this).siblings('input, textarea');
+			$input.val('').focus();
+		});
+	}
 
 	function expandAll($container) {
 		const items = $container.find('.folder-item').get();
@@ -75,6 +84,7 @@ jQuery(document).ready(function($) {
 	};
 
 	loadCategories();
+	initClearFields();
 
 	$('#category-form').on('submit', function(e) {
 		e.preventDefault();
@@ -159,8 +169,38 @@ jQuery(document).ready(function($) {
 			beforeSend: () => categoriesTree.addClass('loading'),
 			success: (response) => {
 				if (response.success) {
+					// Store expanded state before updating
+					const expandedItems = {};
+					$('.folder-item').each(function() {
+						const $item = $(this);
+						const id = $item.data('id');
+						if ($item.find('.folder-icon').hasClass('folder-expanded')) {
+							expandedItems[id] = true;
+						}
+					});
+					
 					categories = response.data;
 					renderCategoriesTree();
+					
+					// Restore expanded state
+					Object.keys(expandedItems).forEach(id => {
+						const $item = $(`.folder-item[data-id="${id}"]`);
+						if ($item.length) {
+							const folderIcon = $item.find('.folder-icon');
+							const folderChildren = $item.next('.folder-children');
+							
+							folderIcon
+								.html(folderIcons.expanded)
+								.removeClass('folder-collapsed')
+								.addClass('folder-expanded');
+							
+							folderChildren.css({
+								display: 'block',
+								height: '',
+								opacity: 1
+							});
+						}
+					});
 				}
 			},
 			complete: () => categoriesTree.removeClass('loading')
@@ -210,6 +250,7 @@ jQuery(document).ready(function($) {
 		categoriesTree.html(buildTree(categories));
 		bindCategoryActions();
 		bindFolderActions();
+		initClearFields();
 	}
 
 	function renderParentCategoriesTree() {
@@ -239,6 +280,7 @@ jQuery(document).ready(function($) {
 
 		parentCategoriesTree.html(buildTree(categories));
 		bindFolderActions();
+		initClearFields();
 
 		parentCategoriesTree.find('.folder-item').on('click', function(e) {
 			e.stopPropagation();
@@ -301,6 +343,10 @@ jQuery(document).ready(function($) {
 			
 			const parentName = categories.find(cat => cat.term_id === data.parent)?.name || 'No parent selected';
 			$('#selected-parent-name').text(parentName);
+			
+			// Mark this item as being edited
+			$('.folder-item').removeClass('is-editing');
+			$(this).closest('.folder-item').addClass('is-editing');
 		});
 
 		$('.delete-category').on('click', function(e) {
@@ -336,5 +382,8 @@ jQuery(document).ready(function($) {
 		$('#category-id').val('');
 		$('#category-parent').val(0);
 		$('#selected-parent-name').text('No parent selected');
+		
+		// Remove editing and selected states but preserve expand/collapse
+		$('.folder-item').removeClass('selected is-editing');
 	}
 });

@@ -1,11 +1,13 @@
 <?php
 /**
  * Plugin Name: WP Enhanced Categories
- * Plugin URI: https://github.com/your-username/wp-enhanced-categories
+ * Plugin URI: https://github.com/Pimzino/wp-enhanced-categories
  * Description: A modern and user-friendly way to manage WordPress categories with an enhanced UI/UX.
  * Version: 1.0.0
- * Author: Your Name
- * Author URI: https://your-website.com
+ * Requires at least: 5.0
+ * Requires PHP: 7.2
+ * Author: Pimzino
+ * Author URI: https://github.com/Pimzino
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: wp-enhanced-categories
@@ -35,8 +37,8 @@ class WP_Enhanced_Categories {
 
 	public function add_menu_page() {
 		add_menu_page(
-			__('Enhanced Categories', 'wp-enhanced-categories'),
-			__('Enhanced Categories', 'wp-enhanced-categories'),
+			__('WP Enhanced Categories', 'wp-enhanced-categories'),
+			__('WP Enhanced Categories', 'wp-enhanced-categories'),
 			'manage_categories',
 			'wp-enhanced-categories',
 			array($this, 'render_admin_page'),

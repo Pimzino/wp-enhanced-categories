@@ -12,8 +12,8 @@
 .wp-enhanced-categories__tree-section {
 	background: #fff;
 	padding: 2rem;
-	border-radius: 4px;
-	box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+	border-radius: 8px;
+	box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 /* Form styles */
@@ -24,7 +24,7 @@
 .category-form label {
 	display: block;
 	margin-bottom: 0.5rem;
-	font-weight: 500;
+	font-weight: 600;
 	color: #1d2327;
 	font-size: 14px;
 }
@@ -32,11 +32,12 @@
 .category-form input[type="text"],
 .category-form textarea {
 	width: 100%;
-	padding: 8px 12px;
-	border: 1px solid #ccd0d4;
-	border-radius: 3px;
-	transition: all 0.15s ease;
+	padding: 10px 12px;
+	border: 1px solid #dcdcde;
+	border-radius: 6px;
+	transition: all 0.2s ease;
 	font-size: 14px;
+	background-color: #f9fafb;
 }
 
 .category-form input[type="text"]:focus,
@@ -44,6 +45,7 @@
 	border-color: #2271b1;
 	box-shadow: 0 0 0 1px #2271b1;
 	outline: none;
+	background-color: #fff;
 }
 
 .category-form textarea {
@@ -82,17 +84,32 @@
 
 /* Tree View Styles */
 .tree-controls {
-	margin-bottom: 1rem;
+	margin-bottom: 1.5rem;
 	display: flex;
 	gap: 8px;
+	padding: 12px;
+	background: #f0f6fc;
+	border-radius: 8px;
+	border: 1px solid rgba(34, 113, 177, 0.1);
 }
 
 .tree-controls .button {
+	background: white;
+	border-color: #dcdcde;
+	color: #1d2327;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 	display: inline-flex;
 	align-items: center;
 	gap: 4px;
 	padding: 4px 10px;
 	font-size: 13px;
+}
+
+.tree-controls .button:hover {
+	background: #f8f9fa;
+	border-color: #2271b1;
+	color: #2271b1;
+	transform: translateY(-1px);
 }
 
 .tree-controls .dashicons {
@@ -111,36 +128,70 @@
 	margin: 3px 0;
 }
 
+/* Button styles */
+.button {
+	padding: 8px 16px;
+	border-radius: 6px;
+	transition: all 0.2s ease;
+	font-weight: 500;
+	border: 1px solid transparent;
+}
+
+.button-primary {
+	background: #2271b1;
+	color: #fff;
+	border-color: #2271b1;
+}
+
+.button-primary:hover {
+	background: #135e96;
+	border-color: #135e96;
+}
+
+/* Tree styles */
 .folder-item {
 	display: flex;
 	align-items: center;
-	padding: 8px 12px;
+	padding: 10px 12px;
 	cursor: pointer;
-	border-radius: 3px;
-	transition: all 0.15s ease;
+	border-radius: 6px;
+	transition: all 0.2s ease;
 	background: #fff;
-	border: 1px solid #ccd0d4;
+	border: 1px solid #dcdcde;
+	margin: 4px 0;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .folder-item:hover {
-	background: #f6f7f7;
+	background: #f0f6fc;
 	border-color: #2271b1;
+	transform: translateX(2px);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.folder-item.has-children {
+	background-color: #f8f9fa;
+}
+
+.folder-item.has-children:hover {
+	background-color: #f0f6fc;
 }
 
 .folder-item.selected {
 	background: #f0f6fc;
 	border-color: #2271b1;
+	box-shadow: 0 0 0 1px #2271b1;
 }
 
 .folder-icon {
 	width: 20px;
 	height: 20px;
-	margin-right: 8px;
+	margin-right: 10px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	color: #2271b1;
-	transition: transform 0.15s ease;
+	transition: transform 0.2s ease;
 }
 
 .folder-icon svg {
@@ -184,16 +235,24 @@
 }
 
 .folder-actions {
-	display: none;
+	display: flex;
 	gap: 4px;
 	margin-left: auto;
-	opacity: 0;
-	transition: opacity 0.15s ease;
 }
 
-.folder-item:hover .folder-actions {
-	display: flex;
+.folder-actions .button {
+	opacity: 0;
+	transform: translateX(-10px);
+	transition: all 0.2s ease;
+}
+
+.folder-item:hover .folder-actions .button {
 	opacity: 1;
+	transform: translateX(0);
+}
+
+.folder-actions .button:hover {
+	transform: translateY(-1px);
 }
 
 .folder-actions .button {
@@ -220,6 +279,27 @@
 
 .folder-actions .delete-category:hover {
 	background: #fcf0f1;
+	border-color: #d63638;
+	color: #d63638;
+}
+
+/* Form improvements */
+.form-submit {
+	display: flex;
+	gap: 8px;
+	padding-top: 1.5rem;
+	border-top: 1px solid #dcdcde;
+	margin-top: 2rem;
+}
+
+.selected-parent {
+	margin-bottom: 0.75rem;
+	padding: 10px 12px;
+	background: #f8f9fa;
+	border-radius: 6px;
+	border: 1px solid #dcdcde;
+	font-size: 13px;
+	color: #50575e;
 }
 
 .folder-children {
@@ -251,7 +331,8 @@ body.modal-open {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(0, 0, 0, 0.4);
+	backdrop-filter: blur(4px);
+	background: rgba(0, 0, 0, 0.3);
 	z-index: 100000;
 }
 
@@ -259,22 +340,34 @@ body.modal-open {
 	position: relative;
 	background: #fff;
 	margin: 5% auto;
-	padding: 1.5rem;
+	padding: 2rem;
 	width: 90%;
 	max-width: 600px;
-	border-radius: 4px;
+	border-radius: 8px;
 	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 	max-height: 90vh;
 	display: flex;
 	flex-direction: column;
+	transform: translateY(20px);
+	opacity: 0;
+	animation: modalSlideIn 0.3s ease forwards;
+}
+
+@keyframes modalSlideIn {
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
 }
 
 .modal-header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 1rem;
-	padding-bottom: 1rem;
+	margin: -2rem -2rem 1rem;
+	padding: 1.5rem 2rem;
+	background: #f8f9fa;
+	border-radius: 8px 8px 0 0;
 	border-bottom: 1px solid #dcdcde;
 }
 
@@ -311,14 +404,14 @@ body.modal-open {
 .modal-body {
 	flex-grow: 1;
 	overflow-y: auto;
-	padding: 1rem;
-	background: #f6f7f7;
-	border-radius: 3px;
-	margin: 0 -1.5rem;
+	margin: 0 -2rem;
+	padding: 0 2rem;
 	max-height: 60vh;
 }
 
+
 /* Add custom scrollbar styles for better visibility */
+/* Scrollbar styles */
 #categories-tree::-webkit-scrollbar,
 .modal-body::-webkit-scrollbar {
 	width: 8px;
@@ -332,7 +425,7 @@ body.modal-open {
 
 #categories-tree::-webkit-scrollbar-thumb,
 .modal-body::-webkit-scrollbar-thumb {
-	background: #ccd0d4;
+	background: #c3c4c7;
 	border-radius: 4px;
 }
 
@@ -345,16 +438,19 @@ body.modal-open {
 	display: flex;
 	justify-content: flex-end;
 	gap: 8px;
-	padding-top: 1rem;
-	margin-top: 1rem;
+	margin: 1rem -2rem -2rem;
+	padding: 1.5rem 2rem;
+	background: #f8f9fa;
+	border-radius: 0 0 8px 8px;
 	border-top: 1px solid #dcdcde;
 }
 
-/* Loading State */
+/* Loading state improvements */
 .loading {
 	position: relative;
 	opacity: 0.7;
 	pointer-events: none;
+	transition: opacity 0.2s ease;
 }
 
 .loading::after {
@@ -362,13 +458,59 @@ body.modal-open {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	width: 20px;
-	height: 20px;
-	margin: -10px 0 0 -10px;
+	width: 24px;
+	height: 24px;
+	margin: -12px 0 0 -12px;
 	border: 2px solid #2271b1;
 	border-top-color: transparent;
 	border-radius: 50%;
-	animation: spin 0.6s linear infinite;
+	animation: spin 0.8s ease infinite;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+/* Form submit section improvements */
+.form-submit {
+	background: #f8f9fa;
+	margin: 2rem -2rem -2rem;
+	padding: 1.5rem 2rem;
+	border-radius: 0 0 8px 8px;
+}
+
+.form-submit .button {
+	min-width: 100px;
+	justify-content: center;
+}
+
+/* Description text improvements */
+.description {
+	color: #646970;
+	font-size: 12px;
+	margin-top: 4px;
+}
+
+/* Section headers */
+.wp-enhanced-categories h2 {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: -0.5rem 0 1.5rem;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid #dcdcde;
+}
+
+.wp-enhanced-categories h2 .description {
+	font-size: 13px;
+	font-weight: normal;
+	margin: 0;
+}
+
+/* Smooth transitions for all interactive elements */
+.button,
+.folder-item,
+.folder-icon,
+input[type="text"],
+textarea {
+	will-change: transform, opacity, box-shadow;
 }
 
 @keyframes spin {
@@ -377,12 +519,75 @@ body.modal-open {
 	}
 }
 
-/* Responsive adjustments */
+/* Input wrapper and clear button styles */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+}
+
+.input-wrapper input,
+.input-wrapper textarea {
+    flex: 1;
+    padding-right: 32px;
+}
+
+.clear-field {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+    display: none;
+}
+
+.clear-field:hover {
+    opacity: 1;
+}
+
+.clear-field .dashicons {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    color: #1d2327;
+}
+
+.input-wrapper:hover .clear-field,
+.input-wrapper input:focus ~ .clear-field,
+.input-wrapper textarea:focus ~ .clear-field {
+    display: block;
+}
+
+/* Adjust clear button position for textarea */
+.input-wrapper textarea ~ .clear-field {
+    top: 8px;
+    transform: none;
+}
+
+/* Responsive improvements */
 @media screen and (max-width: 782px) {
 	.wp-enhanced-categories__container {
 		grid-template-columns: 1fr;
 		gap: 1.5rem;
 		margin: 1.5rem auto;
+		padding: 0 1rem;
+	}
+
+	.form-submit,
+	.modal-footer {
+		flex-direction: column;
+	}
+
+	.form-submit .button,
+	.modal-footer .button {
+		width: 100%;
 	}
 }
 

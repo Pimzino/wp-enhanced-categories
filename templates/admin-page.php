@@ -1,7 +1,6 @@
 <div class="wrap wp-enhanced-categories">
-	<h1><?php _e('Enhanced Categories', 'wp-enhanced-categories'); ?></h1>
-
 	<div class="wp-enhanced-categories__container">
+
 		<!-- Category Form Section -->
 		<div class="wp-enhanced-categories__form-section">
 			<h2><?php _e('Add/Edit Category', 'wp-enhanced-categories'); ?></h2>
@@ -10,18 +9,33 @@
 				
 				<div class="form-field">
 					<label for="category-name"><?php _e('Name', 'wp-enhanced-categories'); ?> *</label>
-					<input type="text" id="category-name" name="name" required>
+					<div class="input-wrapper">
+						<input type="text" id="category-name" name="name" required>
+						<button type="button" class="clear-field" tabindex="-1">
+							<span class="dashicons dashicons-no-alt"></span>
+						</button>
+					</div>
 				</div>
 
 				<div class="form-field">
 					<label for="category-description"><?php _e('Description', 'wp-enhanced-categories'); ?></label>
-					<textarea id="category-description" name="description"></textarea>
+					<div class="input-wrapper">
+						<textarea id="category-description" name="description"></textarea>
+						<button type="button" class="clear-field" tabindex="-1">
+							<span class="dashicons dashicons-no-alt"></span>
+						</button>
+					</div>
 				</div>
 
 				<div class="form-field">
 					<label for="category-slug"><?php _e('Slug', 'wp-enhanced-categories'); ?></label>
-					<input type="text" id="category-slug" name="slug">
-					<p class="description"><?php _e('Optional. Will be generated from the name if left empty.', 'wp-enhanced-categories'); ?></p>
+					<div class="input-wrapper">
+						<input type="text" id="category-slug" name="slug">
+						<button type="button" class="clear-field" tabindex="-1">
+							<span class="dashicons dashicons-no-alt"></span>
+						</button>
+					</div>
+					<p class="description"><?php _e('Optional. Will be generated from the name if left empty. When editing a category, clear this field to have it auto-generated from the new name.', 'wp-enhanced-categories'); ?></p>
 				</div>
 
 				<div class="form-field">
