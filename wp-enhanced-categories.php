@@ -33,22 +33,38 @@ class WP_Enhanced_Categories {
 		add_action('wp_ajax_save_category', array($this, 'save_category'));
 		add_action('wp_ajax_delete_category', array($this, 'delete_category'));
 		add_action('wp_ajax_get_categories', array($this, 'get_categories'));
+		
+		// Add actions to remove footer on our plugin page
+		add_action('admin_init', array($this, 'remove_admin_footer'));
+	}
+
+	public function remove_admin_footer() {
+		$screen = get_current_screen();
+		if ($screen && $screen->id === 'toplevel_page_wp-enhanced-categories') {
+			remove_all_filters('admin_footer_text');
+			remove_all_filters('update_footer');
+			add_filter('admin_footer_text', '__return_empty_string');
+			add_filter('update_footer', '__return_empty_string');
+			add_action('admin_head', function() {
+				echo '<style>#wpfooter { display: none !important; }</style>';
+			});
+		}
 	}
 
 	public function add_menu_page() {
-		add_menu_page(
+		add_submenu_page(
+			'edit.php', // Parent slug (Posts menu)
 			__('WP Enhanced Categories', 'wp-enhanced-categories'),
 			__('WP Enhanced Categories', 'wp-enhanced-categories'),
 			'manage_categories',
 			'wp-enhanced-categories',
-			array($this, 'render_admin_page'),
-			'dashicons-category',
-			70
+			array($this, 'render_admin_page')
 		);
 	}
 
 	public function enqueue_assets($hook) {
-		if ('toplevel_page_wp-enhanced-categories' !== $hook) {
+		// Update the hook check for submenu page
+		if ('posts_page_wp-enhanced-categories' !== $hook) {
 			return;
 		}
 

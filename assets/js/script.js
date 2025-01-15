@@ -147,7 +147,13 @@ jQuery(document).ready(function($) {
 		const selectedItem = parentCategoriesTree.find('.folder-item.selected');
 		if (selectedItem.length) {
 			const selectedId = selectedItem.data('id');
-			const selectedName = selectedItem.find('.folder-name').text();
+			// Get only the text content, excluding the subcategory indicator
+			const selectedName = selectedItem.find('.folder-name').clone()
+				.children()
+				.remove()
+				.end()
+				.text()
+				.trim();
 			$('#category-parent').val(selectedId);
 			$('#selected-parent-name').text(selectedName);
 		} else {
@@ -341,8 +347,9 @@ jQuery(document).ready(function($) {
 			$('#category-description').val(data.description);
 			$('#category-parent').val(data.parent);
 			
+			// Clean parent name text when displaying
 			const parentName = categories.find(cat => cat.term_id === data.parent)?.name || 'No parent selected';
-			$('#selected-parent-name').text(parentName);
+			$('#selected-parent-name').text(parentName.trim());
 			
 			// Mark this item as being edited
 			$('.folder-item').removeClass('is-editing');

@@ -1,4 +1,5 @@
 <div class="wrap wp-enhanced-categories">
+
 	<div class="wp-enhanced-categories__container">
 
 		<!-- Category Form Section -->
