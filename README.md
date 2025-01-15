@@ -15,6 +15,16 @@ A modern and user-friendly way to manage WordPress categories with an enhanced U
 - Smooth animations and transitions
 - Efficient category management for large hierarchies
 
+## Screenshots
+
+### Main Admin Interface
+![Main Admin Interface](assets/screenshots/main-admin-page.png)
+The main interface showing the category management system with folder-like navigation and breadcrumbs.
+
+### Parent Category Selection
+![Parent Category Selection](assets/screenshots/select-parent-category-dialog.png)
+Modal dialog for selecting parent categories with intuitive navigation and visual hierarchy.
+
 ## Installation
 
 1. Upload the plugin files to the `/wp-content/plugins/wp-enhanced-categories` directory
