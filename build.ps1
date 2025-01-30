@@ -26,7 +26,7 @@ $BuildItems | ForEach-Object {
 
 # Package plugin as a zip
 Write-Host "Packaging plugin as zip file"
-Compress-Archive -Path ".\build" -DestinationPath "wp-enhanced-categories.zip" -Force
+Compress-Archive -Path ".\build\*" -DestinationPath "wp-enhanced-categories.zip" -Force
 
 # Delete Build Folder
 Remove-Item ".\build" -Force -Recurse
